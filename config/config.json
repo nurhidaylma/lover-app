@@ -1,0 +1,15 @@
+{
+    "service": {
+        "serviceport": "9700"
+    },
+    "database": {
+        "dbhost": "127.0.0.1",
+        "dbname": "lover",
+        "dbuser": "root",
+        "dbpwd": "password"
+    },
+    "redis": {
+        "address": "127.0.0.1",
+        "password": "password"
+    }
+}
