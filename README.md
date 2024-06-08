@@ -33,9 +33,11 @@ To run the application locally, follow these steps:
     Create a database and configure the connection details in the database/database.go file.
 
 3. Install dependencies:
+   ```bash
    go mod tidy
 
 4. Start the server:
+   ```bash
    go run main.go
 
 
