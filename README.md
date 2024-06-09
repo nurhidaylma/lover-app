@@ -33,9 +33,11 @@ To run the application locally, follow these steps:
     Create a database and configure the connection details in the database/database.go file.
 
 3. Install dependencies:
+   ```bash
    go mod tidy
 
 4. Start the server:
+   ```bash
    go run main.go
 
 
@@ -49,7 +51,7 @@ To run the application locally, follow these steps:
     POST /swipe: Record a swipe action (like or pass) on a dating profile.
 
 3. Premium Features
-    POST /upgrade: Upgrade to premium features (e.g., unlimited swipes, verified label).
+    POST /premium: Upgrade to premium features (e.g., unlimited swipes, verified label).
 
 4. Set Profile
     POST /profile: Set user's profile 
