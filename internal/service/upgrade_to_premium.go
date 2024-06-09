@@ -19,6 +19,12 @@ func (s *LoverService) UpgradeToPremium(ctx context.Context, req model.UserPurch
 		return model.ResponseMessage{Message: "failed purchasing to premium"}, status.Error(codes.Internal, codes.Internal.String())
 	}
 
+	err = s.repo.DB.UpdateUserPremiumStatus(util.IsPremium, req.UserId)
+	if err != nil {
+		util.Logger.LogError(err.Error())
+		return model.ResponseMessage{Message: "failed purchasing to premium"}, status.Error(codes.Internal, codes.Internal.String())
+	}
+
 	go s.repo.Redis.SetPremiumUser(req)
 	return model.ResponseMessage{Message: "success"}, nil
 }

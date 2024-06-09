@@ -11,9 +11,10 @@ import (
 const (
 	insertUser = `INSERT INTO users (email, username, password, premium_status, created_at, updated_at)
 				VALUES (?,?,?,?,?,?)`
-	selectUserById       = `SELECT email, username, premium_status FROM users WHERE id = ?`
-	selectUserByEmail    = `SELECT email, username, premium_status FROM users WHERE email = ?`
-	selectUserByUserName = `SELECT email, username, premium_status FROM users WHERE username = ?`
+	selectUserById          = `SELECT email, username, premium_status FROM users WHERE id = ?`
+	selectUserByEmail       = `SELECT email, username, premium_status FROM users WHERE email = ?`
+	selectUserByUserName    = `SELECT email, username, premium_status FROM users WHERE username = ?`
+	updateUserPremiumStatus = `UPDATE users SET premium_status = ? WHERE id = ?`
 )
 
 func (db *dbRepository) WriteUser(req model.User) error {
@@ -82,4 +83,18 @@ func (db *dbRepository) ReadUserByUserName(username string) (resp model.User, er
 	}
 
 	return
+}
+
+func (db *dbRepository) UpdateUserPremiumStatus(premiumStatus int, userId int) error {
+	const (
+		fileName = `user.go`
+		funcName = "UpdateUserPremiumStatus"
+	)
+
+	_, err := db.db.Exec(updateUserPremiumStatus, premiumStatus, userId)
+	if err != nil {
+		return util.NewError(fileName, funcName, err)
+	}
+
+	return nil
 }

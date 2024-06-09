@@ -7,6 +7,7 @@ type DBRepository interface {
 	ReadUserByUserName(username string) (model.User, error)
 	ReadUserByEmail(email string) (model.User, error)
 	ReadUserById(id int) (model.User, error)
+	UpdateUserPremiumStatus(premiumStatus, userID int) error
 
 	WriteProfile(model.Profile) error
 

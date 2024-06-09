@@ -20,8 +20,9 @@ func TestLoverService_UpgradeToPremium(t *testing.T) {
 		ctx      context.Context
 		request  model.UserPurchase
 
-		writeUserPurchaseErr error
-		setPremiumUserErr    error
+		writeUserPurchaseErr       error
+		updateUserPremiumStatusErr error
+		setPremiumUserErr          error
 
 		expectedResp model.ResponseMessage
 		expectedErr  error
@@ -34,16 +35,18 @@ func TestLoverService_UpgradeToPremium(t *testing.T) {
 				FeatureId:    1,
 				PurchaseDate: time.Now(),
 			},
-			writeUserPurchaseErr: nil,
-			setPremiumUserErr:    nil,
-			expectedResp:         model.ResponseMessage{Message: "success"},
-			expectedErr:          nil,
+			writeUserPurchaseErr:       nil,
+			updateUserPremiumStatusErr: nil,
+			setPremiumUserErr:          nil,
+			expectedResp:               model.ResponseMessage{Message: "success"},
+			expectedErr:                nil,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.testName, func(t *testing.T) {
 			mockDB.EXPECT().WriteUserPurchase(gomock.Any()).Return(tt.writeUserPurchaseErr)
+			mockDB.EXPECT().UpdateUserPremiumStatus(gomock.Any(), gomock.Any()).Return(tt.updateUserPremiumStatusErr)
 			mockRedis.EXPECT().SetPremiumUser(gomock.Any()).Return(tt.setPremiumUserErr)
 
 			gotResp, err := services.UpgradeToPremium(tt.ctx, tt.request)

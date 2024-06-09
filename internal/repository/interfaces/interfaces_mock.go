@@ -79,6 +79,20 @@ func (mr *MockDBRepositoryMockRecorder) ReadUserByUserName(username interface{})
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ReadUserByUserName", reflect.TypeOf((*MockDBRepository)(nil).ReadUserByUserName), username)
 }
 
+// UpdateUserPremiumStatus mocks base method.
+func (m *MockDBRepository) UpdateUserPremiumStatus(premiumStatus, userID int) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateUserPremiumStatus", premiumStatus, userID)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// UpdateUserPremiumStatus indicates an expected call of UpdateUserPremiumStatus.
+func (mr *MockDBRepositoryMockRecorder) UpdateUserPremiumStatus(premiumStatus, userID interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateUserPremiumStatus", reflect.TypeOf((*MockDBRepository)(nil).UpdateUserPremiumStatus), premiumStatus, userID)
+}
+
 // WriteProfile mocks base method.
 func (m *MockDBRepository) WriteProfile(arg0 model.Profile) error {
 	m.ctrl.T.Helper()
