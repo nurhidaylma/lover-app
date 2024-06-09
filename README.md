@@ -51,7 +51,7 @@ To run the application locally, follow these steps:
     POST /swipe: Record a swipe action (like or pass) on a dating profile.
 
 3. Premium Features
-    POST /upgrade: Upgrade to premium features (e.g., unlimited swipes, verified label).
+    POST /premium: Upgrade to premium features (e.g., unlimited swipes, verified label).
 
 4. Set Profile
     POST /profile: Set user's profile 
