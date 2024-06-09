@@ -14,6 +14,7 @@ import (
 	"github.com/nurhidaylma/lover-app.git/internal/repository/redis"
 	"github.com/nurhidaylma/lover-app.git/internal/service"
 	"github.com/nurhidaylma/lover-app.git/internal/transport/rest"
+	"github.com/nurhidaylma/lover-app.git/middleware"
 	"github.com/nurhidaylma/lover-app.git/util"
 )
 
@@ -66,6 +67,9 @@ func main() {
 	restServer := rest.NewRESTServer(endpoint)
 	http.HandleFunc("/signup", restServer.SignUpHandler)
 	http.HandleFunc("/login", restServer.LoginHandler)
+	http.Handle("/profile", middleware.AuthMiddleware(http.HandlerFunc(restServer.SetProfileHandler)))
+	http.Handle("/swipe", middleware.AuthMiddleware(http.HandlerFunc(restServer.SwipeHanlder)))
+	http.Handle("/premium", middleware.AuthMiddleware(http.HandlerFunc(restServer.UpgradeToPremiumHandler)))
 
 	if err := http.ListenAndServe(":"+config.ServicePort, nil); err != nil {
 		util.Logger.LogError(err.Error())

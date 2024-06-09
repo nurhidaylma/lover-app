@@ -16,8 +16,8 @@ func (s *LoverService) Swipe(ctx context.Context, req model.Swipe) (model.Respon
 	req.UserId = util.StrToInt(userId)
 
 	if !util.ValidSwipeType(int(req.SwipeType)) {
-		util.Logger.LogWarning("swipe is invalid")
-		return model.ResponseMessage{Message: "swipe is invalid"}, status.Error(codes.InvalidArgument, codes.InvalidArgument.String())
+		util.Logger.LogWarning("invalid swipe type")
+		return model.ResponseMessage{Message: "invalid swipe type"}, status.Error(codes.InvalidArgument, codes.InvalidArgument.String())
 	}
 
 	currentCount, err := s.repo.Redis.GetSwipeCount(req)

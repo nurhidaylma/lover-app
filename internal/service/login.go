@@ -16,7 +16,7 @@ func (s *LoverService) Login(email, password string) (model.User, error) {
 		return model.User{}, status.Error(codes.Internal, codes.Internal.String())
 	}
 	if user.Id == 0 {
-		util.Logger.LogWarning("user is not registered")
+		util.Logger.LogWarning("user not found")
 		return model.User{}, status.Error(codes.InvalidArgument, codes.InvalidArgument.String())
 	}
 
