@@ -54,4 +54,8 @@ To run the application locally, follow these steps:
     POST /premium: Upgrade to premium features (e.g., unlimited swipes, verified label).
 
 4. Set Profile
-    POST /profile: Set user's profile 
+    POST /profile: Set user's profile
+
+## ERD 
+![Entity Relationship Diagram](https://github.com/nurhidaylma/lover-app/assets/26399449/7329563d-4901-4a3e-bfd9-c6f0ebf9873f)
+
